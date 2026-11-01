@@ -1,0 +1,4 @@
+.env
+recibos.db
+uploads/
+__pycache__/
