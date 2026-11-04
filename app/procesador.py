@@ -1,7 +1,7 @@
 import json
 from gemini_service import analizar_recibo
 from validacion import validar_recibo
-from database import crear_tabla, guardar_recibos, listar_recibos
+from database import crear_tabla, guardar_recibos, listar_recibos, existe_recibo
 
 
 def procesar_recibo(imagen_bytes, mime_type):
@@ -12,6 +12,9 @@ def procesar_recibo(imagen_bytes, mime_type):
 
     if not es_valido:
         print("Recibo no válido:", avisos)
+        return None
+    if existe_recibo(datos["comercio"],datos["fecha"],datos["total"]):
+        print("Recibo dupliado, NO se guarda")
         return None
 
     coincide_total = 1 if not avisos else 0

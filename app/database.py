@@ -48,6 +48,17 @@ def buscar_por_comercio(nombre):
     return filas
 
 
+def existe_recibo(comercio, fecha, total):
+    conn = get_connection()
+    cursor = conn.execute(
+        "SELECT 1 FROM recibos WHERE comercio = ? AND fecha = ? AND total = ?",
+        (comercio, fecha, total),
+    )
+    fila = cursor.fetchone()
+    conn.close()
+    return fila is not None
+
+
 if __name__ == "__main__":
     crear_tabla()
     #guardar_recibos("Jumbo", "2026-09-29", 8500, "[]", 1)
