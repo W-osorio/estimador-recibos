@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile
 from procesador import procesar_recibo
+from database import buscar_por_comercio
 
 app = FastAPI()
 
@@ -12,3 +13,7 @@ async def subir(archivo: UploadFile):
     if resultado is None:
         return {"estado": "rechazado"}
     return {"estado": "guardado", "resultado": resultado}
+
+@app.get("/buscar")
+def buscar(comercio: str):
+    return buscar_por_comercio(comercio)

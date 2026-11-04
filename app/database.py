@@ -42,7 +42,7 @@ def listar_recibos():
 
 def buscar_por_comercio(nombre):
     conn = get_connection()
-    cursor = conn.execute("SELECT * FROM recibos WHERE comercio LIKE ?", (nombre,))
+    cursor = conn.execute("SELECT * FROM recibos WHERE comercio LIKE ?",  (f"%{nombre}%",))
     filas = cursor.fetchall()
     conn.close()
     return filas
