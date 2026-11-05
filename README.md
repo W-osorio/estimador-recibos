@@ -38,3 +38,8 @@ uvicorn main:app --reload --app-dir app
 ## Captura
 
 ![Captura de /docs con la respuesta "guardado"](imagenes/docs.png)
+
+## Rutas
+
+- `POST /subir`: recibe la foto de un recibo, extrae los datos con Gemini, los valida y los guarda en SQLite. Si el recibo ya existe, no lo vuelve a guardar.
+- `GET /buscar?___=tricot`: devuelve los recibos guardados cuyo comercio contiene el texto buscado.
