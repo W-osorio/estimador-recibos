@@ -16,4 +16,8 @@ async def subir(archivo: UploadFile):
 
 @app.get("/buscar")
 def buscar(comercio: str):
-    return buscar_por_comercio(comercio)
+    filas = buscar_por_comercio(comercio)
+    return [
+        {"id": f[0], "comercio": f[1], "fecha": f[2], "total": f[3]}
+        for f in filas
+    ]
